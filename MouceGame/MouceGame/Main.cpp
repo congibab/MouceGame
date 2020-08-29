@@ -1,18 +1,21 @@
-﻿
-#include<Siv3D.hpp> // OpenSiv3D v0.4.3
-
-#include "Game.h"
+﻿# include <Siv3D.hpp>
+# include "Title.h"
+# include "Game.h"
 
 void Main()
 {
-	// 背景を水色にする
-	Scene::SetBackground(ColorF(0.8, 0.9, 1.0));
+	FontAsset::Register(U"TitleFont", 60, Typeface::Heavy);
+	App manager;
 
-	// 猫の座標
-	Vec2 catPos(640, 450);
+	manager.add<Title>(U"Title");
+	manager.add<Game>(U"Game");
+
 
 	while (System::Update())
 	{
-		
+		if (!manager.update())
+		{
+			break;
+		}
 	}
 }

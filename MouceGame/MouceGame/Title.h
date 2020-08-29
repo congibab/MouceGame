@@ -3,13 +3,14 @@
 using App = SceneManager<String>;
 
 #pragma once
-class Game : public App::Scene
+class Title : public App::Scene
 {
 private:
-
-	Texture tex;
+	 double t;
 public:
-	Game(const InitData& init);
-	void update() ;
+	Title(const InitData& init);
+	void update();
 	void draw() const ;
+
 };
+
