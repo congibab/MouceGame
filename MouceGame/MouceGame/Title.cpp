@@ -9,6 +9,7 @@ void Title::update()
 {
 	t = Scene::Time();
 	//if (MouseL.down()) changeScene(U"Game");
+	ClearPrint();
 	if (SimpleGUI::Button(U"game start", Scene::Center() + Vec2(-250,0), 500)) changeScene(U"Game");
 
 }
