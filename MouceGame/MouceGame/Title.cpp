@@ -18,7 +18,5 @@ void Title::draw() const
 {
 	Scene::SetBackground(ColorF(0.3, 0.4, 0.5));
 
-	Print << U"{}"_fmt(t);
-
 	FontAsset(U"TitleFont")(U"マウスで図形を消すゲーム").drawAt(400, 100);
 }

@@ -11,6 +11,5 @@ public:
 	Title(const InitData& init);
 	void update();
 	void draw() const ;
-
 };
 
