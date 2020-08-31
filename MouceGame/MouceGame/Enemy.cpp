@@ -5,7 +5,7 @@ void Enemy::Movement()
 	for (auto i = 0; i < circle.size(); ++i)
 	{
 		Wall_collision();
-		circle[i].moveBy(Direction[i] * Scene::DeltaTime());
+		circle[i].moveBy(Direction[i] * Scene::DeltaTime() * 10);
 	}
 }
 
@@ -27,33 +27,37 @@ void Enemy::Wall_collision()
 
 Enemy::Enemy()
 {
-
+	Score = 0;
 }
 
 void Enemy::update()
 {
-	if (enemies.size() <= 100) enemies << RandomVec2(Scene::Rect());
-	if (color.size() <= 100) color << RandomColor();
-	if (circle.size() <= 100) circle << Circle(enemies.back(), 20);
-	if (Direction.size() <= 100) Direction << Vec2(Random(-100,100), Random(-100, 100));
+	if (enemies.size() <= 10) enemies << RandomVec2(Scene::Rect());
+	if (color.size() <= 10) color << RandomColor();
+	if (circle.size() <= 10) circle << Circle(enemies.back(), 20);
+	if (Direction.size() <= 10) Direction << Vec2(Random(-10,10), Random(-10, 10));
 	
 	
 	int j = 0;
 	for (auto i = circle.begin(); i < circle.end(); ++i)
 	{
-		++j;
+		
 		if (i->leftClicked())
 		{
 			circle.erase(i);
 			color.erase(color.begin() + j);
 			enemies.erase(enemies.begin() + j);
 			Direction.erase(Direction.begin() + j);
+			effect.add<Spark>(Cursor::Pos());
+
+			Score += 1;
 			break;
 		}
+		j++;
 	}
-	
+	effect.update();
 	Movement();
-	 
+	
 }
 
 void Enemy::draw() const

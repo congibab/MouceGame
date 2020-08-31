@@ -1,5 +1,6 @@
 # include <Siv3D.hpp>
 #include "Enemy.h"
+#include "ParticleSys.h"
 
 using App = SceneManager<String>;
 
@@ -7,14 +8,15 @@ using App = SceneManager<String>;
 class Game : public App::Scene
 {
 private:
+	int _Score;
 	float Time; //ğ¤ùÚãÁÊà
 	Enemy enemy;
 	Font font;
-
+	Effect effect;
 public:
 
 	Game(const InitData& init);
 	void update() ;
-	void draw() const ;
+	void draw() const;
 
 };
