@@ -13,6 +13,7 @@ private:
 	Enemy enemy;
 	Font font;
 	Effect effect;
+	Texture texture;
 public:
 
 	Game(const InitData& init);

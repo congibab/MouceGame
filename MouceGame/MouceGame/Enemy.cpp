@@ -5,7 +5,7 @@ void Enemy::Movement()
 	for (auto i = 0; i < circle.size(); ++i)
 	{
 		Wall_collision();
-		circle[i].moveBy(Direction[i] * Scene::DeltaTime() * 10);
+		circle[i].moveBy(Direction[i] * Scene::DeltaTime() * 100);
 	}
 }
 
@@ -35,7 +35,7 @@ void Enemy::update()
 	if (enemies.size() <= 10) enemies << RandomVec2(Scene::Rect());
 	if (color.size() <= 10) color << RandomColor();
 	if (circle.size() <= 10) circle << Circle(enemies.back(), 20);
-	if (Direction.size() <= 10) Direction << Vec2(Random(-10,10), Random(-10, 10));
+	if (Direction.size() <= 10) Direction << Vec2(Random(-2,2), Random(-2, 2));
 	
 	
 	int j = 0;
@@ -55,7 +55,7 @@ void Enemy::update()
 		}
 		j++;
 	}
-	effect.update();
+	
 	Movement();
 	
 }

@@ -8,6 +8,7 @@ class Title : public App::Scene
 private:
 	 double t;
 	 Effect effect;
+	 Texture Tex;
 public:
 	Title(const InitData& init);
 	void update();
