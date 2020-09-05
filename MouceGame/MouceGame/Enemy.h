@@ -6,8 +6,10 @@ class Enemy
 {
 private:
 	int Score;
+	bool Delet;
 	float Time; //ğ¤ùÚãÁÊà
-
+	
+	Font font;
 	Effect effect;
 	Array<Vec2> enemies;
 	Array<Color> color;
@@ -22,5 +24,6 @@ public:
 	void draw() const;
 	
 	int GetScore() { return Score; }
+	bool GetDelet() { return Delet; }
 };
 

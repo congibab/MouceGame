@@ -25,39 +25,41 @@ void Enemy::Wall_collision()
 	}
 }
 
-Enemy::Enemy()
+Enemy::Enemy() : font(30)
 {
+	Delet = false;
 	Score = 0;
 }
 
 void Enemy::update()
 {
-	if (enemies.size() <= 10) enemies << RandomVec2(Scene::Rect());
-	if (color.size() <= 10) color << RandomColor();
-	if (circle.size() <= 10) circle << Circle(enemies.back(), 20);
-	if (Direction.size() <= 10) Direction << Vec2(Random(-2,2), Random(-2, 2));
-	
+	Delet = false;
+
+	if (enemies.size() <= 20)
+	{
+		enemies << RandomVec2(Scene::Rect());
+		color << RandomColor();
+		circle << Circle(enemies.back(), 30);
+		Direction << Vec2(Random(-2, 2), Random(-2, 2));
+	}
 	
 	int j = 0;
 	for (auto i = circle.begin(); i < circle.end(); ++i)
-	{
-		
+	{		
 		if (i->leftClicked())
 		{
 			circle.erase(i);
 			color.erase(color.begin() + j);
 			enemies.erase(enemies.begin() + j);
 			Direction.erase(Direction.begin() + j);
-			effect.add<Spark>(Cursor::Pos());
-
 			Score += 1;
+			Delet = true;
 			break;
 		}
 		j++;
 	}
-	
+
 	Movement();
-	
 }
 
 void Enemy::draw() const
@@ -67,6 +69,7 @@ void Enemy::draw() const
 	{
 		circle[i].draw(color[i]);
 	}
+
 	
 
 }

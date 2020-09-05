@@ -7,9 +7,6 @@ Title::Title(const InitData& init) : IScene(init), Tex(Emoji(U"🥝"))
 
 void Title::update()
 {
-	t = Scene::Time();
-	//if (MouseL.down()) changeScene(U"Game");
-	ClearPrint();
 	if (SimpleGUI::Button(U"game start", Scene::Center() + Vec2(-250,0), 500)) changeScene(U"Game");
 
 }

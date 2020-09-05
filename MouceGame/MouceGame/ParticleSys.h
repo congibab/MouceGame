@@ -11,7 +11,7 @@ struct Spark : IEffect
 {
 	Array<Particle> m_particles;
 
-	Spark(const Vec2& start) : m_particles(5)
+	Spark(const Vec2& start) : m_particles(10)
 	{
 		for (auto& particle : m_particles)
 		{
@@ -45,10 +45,11 @@ struct NumberEffect : IEffect
 		: m_start(start)
 		, m_number(num)
 		, m_font(font) {}
+		
 
 	bool update(double t) override
 	{
-		const HSV color(180 - m_number * 1.8, 1.0 - (t * 2.0));
+		const HSV color(0,0,0);
 
 		m_font(m_number).drawAt(m_start.movedBy(0, t * -120), color);
 
@@ -56,8 +57,6 @@ struct NumberEffect : IEffect
 	}
 };
 
-class ParticleSys
-{
-	
-};
+
+
 
