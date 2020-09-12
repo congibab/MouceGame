@@ -7,8 +7,8 @@ Title::Title(const InitData& init) : IScene(init), Tex(Emoji(U"🥝"))
 
 void Title::update()
 {
+	//start Buttonを押すとGame Sceneに移動
 	if (SimpleGUI::Button(U"game start", Scene::Center() + Vec2(-250,0), 500)) changeScene(U"Game");
-
 }
 
 void Title::draw() const

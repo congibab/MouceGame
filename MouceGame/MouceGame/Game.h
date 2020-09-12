@@ -17,9 +17,6 @@ private:
 	Font font2;
 	Effect effect;
 	Texture texture;
-	//PixelShader ps;
-	
-	//MSRenderTexture rt;
 
 public:
 

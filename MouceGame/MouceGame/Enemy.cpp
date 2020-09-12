@@ -1,5 +1,8 @@
-#include "Enemy.h"
+﻿#include "Enemy.h"
 
+/// <summary>
+/// 敵の動き
+/// </summary>
 void Enemy::Movement()
 {
 	for (auto i = 0; i < circle.size(); ++i)
@@ -9,6 +12,9 @@ void Enemy::Movement()
 	}
 }
 
+/// <summary>
+/// 敵がスクリーン外に移動したら移動を反転する
+/// </summary>
 void Enemy::Wall_collision()
 {
 	for (auto i = 0; i < circle.size(); ++i)
@@ -35,7 +41,7 @@ void Enemy::update()
 {
 	Delet = false;
 
-	if (enemies.size() <= 20)
+	if (enemies.size() <= 20)//敵の数を20個に制限
 	{
 		enemies << RandomVec2(Scene::Rect());
 		color << RandomColor();
@@ -43,10 +49,17 @@ void Enemy::update()
 		Direction << Vec2(Random(-2, 2), Random(-2, 2));
 	}
 	
+	
 	int j = 0;
 	for (auto i = circle.begin(); i < circle.end(); ++i)
-	{		
-		if (i->leftClicked())
+	{	
+		//マウスが円の上に位置するとRingEffectが出る
+		if (i->mouseOver())
+		{
+			effect.add<RingEffect>(Cursor::Pos());
+		}
+
+		if (i->leftClicked()) //クリックすると敵を消える処理
 		{
 			circle.erase(i);
 			color.erase(color.begin() + j);
@@ -58,18 +71,14 @@ void Enemy::update()
 		}
 		j++;
 	}
-
 	Movement();
+	effect.update();
 }
 
 void Enemy::draw() const
 {
-	//Print << U"{}"_fmt(enemies);
 	for (auto i = 0; i < circle.size(); ++i)
 	{
 		circle[i].draw(color[i]);
 	}
-
-	
-
 }

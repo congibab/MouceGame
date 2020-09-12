@@ -1,5 +1,9 @@
-#pragma once
+﻿#pragma once
 # include <Siv3D.hpp>
+
+//Particle Effect関連
+//=====================================================================
+//=====================================================================
 
 struct Particle
 {
@@ -11,7 +15,7 @@ struct Spark : IEffect
 {
 	Array<Particle> m_particles;
 
-	Spark(const Vec2& start) : m_particles(10)
+	Spark(const Vec2& start) : m_particles(30)
 	{
 		for (auto& particle : m_particles)
 		{
@@ -33,12 +37,13 @@ struct Spark : IEffect
 	}
 };
 
+//=====================================================================
+//=====================================================================
+
 struct NumberEffect : IEffect
 {
 	Vec2 m_start;
-
 	int32 m_number;
-
 	Font m_font;
 
 	NumberEffect(const Vec2& start, int32 num, const Font& font)
@@ -56,7 +61,19 @@ struct NumberEffect : IEffect
 		return t < 0.5;
 	}
 };
+//=====================================================================
+//=====================================================================
 
+struct RingEffect : IEffect
+{
+	Vec2 m_pos;
 
+	RingEffect(const Vec2& pos)
+		: m_pos(pos) {}
 
-
+	bool update(double t) override
+	{
+		Circle(m_pos, t * 100).drawFrame(2,2, RandomColor());
+		return t < 0.5;
+	}
+};
