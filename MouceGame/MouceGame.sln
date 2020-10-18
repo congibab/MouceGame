@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MouceGame", "MouceGame\MouceGame.vcxproj", "{D888E6B7-4327-4724-A1F6-31214DDE9521}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SecondProject", "SecondProject\SecondProject.vcxproj", "{88C36AC0-81CC-4812-8BAB-D2B8C7E98B91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -15,6 +17,10 @@ Global
 		{D888E6B7-4327-4724-A1F6-31214DDE9521}.Debug|x64.Build.0 = Debug|x64
 		{D888E6B7-4327-4724-A1F6-31214DDE9521}.Release|x64.ActiveCfg = Release|x64
 		{D888E6B7-4327-4724-A1F6-31214DDE9521}.Release|x64.Build.0 = Release|x64
+		{88C36AC0-81CC-4812-8BAB-D2B8C7E98B91}.Debug|x64.ActiveCfg = Debug|x64
+		{88C36AC0-81CC-4812-8BAB-D2B8C7E98B91}.Debug|x64.Build.0 = Debug|x64
+		{88C36AC0-81CC-4812-8BAB-D2B8C7E98B91}.Release|x64.ActiveCfg = Release|x64
+		{88C36AC0-81CC-4812-8BAB-D2B8C7E98B91}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
