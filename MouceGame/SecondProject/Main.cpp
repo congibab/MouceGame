@@ -1,73 +1,87 @@
 ﻿
-# include <Siv3D.hpp> // OpenSiv3D v0.4.3
+#include <Siv3D.hpp> // OpenSiv3D v0.4.3
+#include <mysql.h>
+
+#include "Title.h"
+#include "Game.h"
+#include "Result.h"
+
+#pragma comment(lib, "libmariadb.lib")
 
 void Main()
 {
-	// 背景を水色にする
-	Scene::SetBackground(ColorF(0.8, 0.9, 1.0));
+	//constexpr ColorF backgroundColor(0.3, 0.4, 0.5);
+	//MSRenderTexture rt(Scene::Size());
 
-	// 大きさ 60 のフォントを用意
-	const Font font(60);
+	//const PixelShader psGrayscale(U"example/shader/2d/grayscale" SIV3D_SELECT_SHADER(U".hlsl", U".frag"),
+	//	{ { U"PSConstants2D", 0 } });
 
-	// 猫のテクスチャを用意
-	const Texture cat(Emoji(U"🐈"));
+	//const PixelShader ps(U"example/shader/2d/multi_texture_blend" SIV3D_SELECT_SHADER(U".hlsl", U".frag"),
+	//	{ { U"PSConstants2D", 0 } });
 
-	// 猫の座標
-	Vec2 catPos(640, 450);
+	//const Texture emojiCat(Emoji(U"🐈"));
+	//const Texture windmill(U"example/windmill.png", TextureDesc::Mipped);
+
+	//MYSQL* con = mysql_init(NULL);
+
+	//if (con == NULL)
+	//{
+	//	fprintf(stderr, "%s\n", mysql_error(con));
+	//	exit(1);
+	//}
+
+	//if (mysql_real_connect(con, "ip adrass", "Username", "password",
+	//	"DBName", 0, NULL, 0) == NULL)
+	//{
+	//	fprintf(stderr, "%s\n", mysql_error(con));
+	//	throw Error(U"not connect server");
+	//	mysql_close(con);
+	//}
+
+	App manager;
+
+	//=========================add Scene
+	manager.add<Title>(U"Title");
+	manager.add<Game>(U"Game");
+	manager.add<Result>(U"Result");
+	//=========================
 
 	while (System::Update())
 	{
-		// テキストを画面の中心に描く
-		font(U"Hello, Siv3D!🐣").drawAt(Scene::Center(), Palette::Black);
-
-		// 大きさをアニメーションさせて猫を表示する
-		cat.resized(100 + Periodic::Sine0_1(1s) * 20).drawAt(catPos);
-
-		// マウスカーソルに追従する半透明の赤い円を描く
-		Circle(Cursor::Pos(), 40).draw(ColorF(1, 0, 0, 0.5));
-
-		// [A] キーが押されたら
-		if (KeyA.down())
+	
+		if (!manager.update())
 		{
-			// Hello とデバッグ表示する
-			Print << U"Hello!";
+			break;
 		}
+		//if (!psGrayscale)
+		//{
+		//	throw Error(U"Failed to load a shader file");
+		//}
+	
+		//rt.clear(backgroundColor);
+		//{
+		//	ScopedRenderTarget2D target(rt);
 
-		// ボタンが押されたら
-		if (SimpleGUI::Button(U"Move the cat", Vec2(600, 20)))
-		{
-			// 猫の座標を画面内のランダムな位置に移動する
-			catPos = RandomVec2(Scene::Rect());
-		}
+		//	for (auto y : Range(1, 5))
+		//	{
+		//		Line(0, y * 100, 800, y * 100).draw(1, Palette::Gray);
+		//	}
+
+		//	for (auto x : Range(1, 7))
+		//	{
+		//		Line(x * 100, 0, x * 100, 600).draw(1, Palette::Gray);
+		//	}
+
+		//	Graphics2D::SetTexture(1, windmill);
+		//	{
+		//		// マルチテクスチャによるブレンドのシェーダを開始
+		//		ScopedCustomShader2D shader(ps);
+		//		emojiCat.scaled(2).drawAt(Scene::Center());
+		//	}
+		//}
+		//Graphics2D::Flush();
+		//rt.resolve();
+		//ScopedCustomShader2D shader(psGrayscale);
+		//rt.draw();
 	}
 }
-
-//
-// = アドバイス =
-// Debug ビルドではプログラムの最適化がオフになります。
-// 実行速度が遅いと感じた場合は Release ビルドを試しましょう。
-// アプリをリリースするときにも、Release ビルドにするのを忘れないように！
-//
-// 思ったように動作しない場合は「デバッグの開始」でプログラムを実行すると、
-// 出力ウィンドウに詳細なログが表示されるので、エラーの原因を見つけやすくなります。
-//
-// = お役立ちリンク =
-//
-// OpenSiv3D リファレンス
-// https://siv3d.github.io/ja-jp/
-//
-// チュートリアル
-// https://siv3d.github.io/ja-jp/tutorial/basic/
-//
-// よくある間違い
-// https://siv3d.github.io/ja-jp/articles/mistakes/
-//
-// サポートについて
-// https://siv3d.github.io/ja-jp/support/support/
-//
-// Siv3D ユーザコミュニティ Slack への参加
-// https://siv3d.github.io/ja-jp/community/community/
-//
-// 新機能の提案やバグの報告
-// https://github.com/Siv3D/OpenSiv3D/issues
-//
