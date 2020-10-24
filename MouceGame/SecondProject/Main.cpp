@@ -41,7 +41,7 @@ void Main()
 	App manager;
 
 	//=========================add Scene
-	manager.add<Title>(U"Title");
+	//manager.add<Title>(U"Title");
 	manager.add<Game>(U"Game");
 	manager.add<Result>(U"Result");
 	//=========================
@@ -53,35 +53,6 @@ void Main()
 		{
 			break;
 		}
-		//if (!psGrayscale)
-		//{
-		//	throw Error(U"Failed to load a shader file");
-		//}
 	
-		//rt.clear(backgroundColor);
-		//{
-		//	ScopedRenderTarget2D target(rt);
-
-		//	for (auto y : Range(1, 5))
-		//	{
-		//		Line(0, y * 100, 800, y * 100).draw(1, Palette::Gray);
-		//	}
-
-		//	for (auto x : Range(1, 7))
-		//	{
-		//		Line(x * 100, 0, x * 100, 600).draw(1, Palette::Gray);
-		//	}
-
-		//	Graphics2D::SetTexture(1, windmill);
-		//	{
-		//		// マルチテクスチャによるブレンドのシェーダを開始
-		//		ScopedCustomShader2D shader(ps);
-		//		emojiCat.scaled(2).drawAt(Scene::Center());
-		//	}
-		//}
-		//Graphics2D::Flush();
-		//rt.resolve();
-		//ScopedCustomShader2D shader(psGrayscale);
-		//rt.draw();
 	}
 }
